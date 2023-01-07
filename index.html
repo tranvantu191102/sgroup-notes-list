@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Notes List</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header__left">
+          <div class="header__left__edit">
+            <input type="text" class="input-edit" />
+            <button class="btn__save">Save</button>
+          </div>
+        </div>
+        <div class="header__right">
+          <input
+            type="text"
+            placeholder="Enter your note..."
+            class="input-add"
+          />
+
+          <button class="btn__add">
+            <i class="bx bx-plus"></i>
+            Add note
+          </button>
+        </div>
+      </header>
+      <main>
+        <div class="notes-list"></div>
+      </main>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
