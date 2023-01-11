@@ -1,20 +1,25 @@
 const inputElement = document.querySelector(".input-add");
 const btnAdd = document.querySelector(".btn__add");
 let title = "";
-let listNotes = [
-  {
-    id: 341321,
-    title: "sdfsdfsdf",
-  },
-  {
-    id: 35345345,
-    title: "aaaafff",
-  },
-  {
-    id: 35364567456,
-    title: "jjkhkj",
-  },
-];
+// let listNotes = [
+//   {
+//     id: 341321,
+//     title: "sdfsdfsdf",
+//   },
+//   {
+//     id: 35345345,
+//     title: "aaaafff",
+//   },
+//   {
+//     id: 35364567456,
+//     title: "jjkhkj",
+//   },
+// ];
+
+listNotes = localStorage.getItem("notes-list")
+  ? JSON.parse(localStorage.getItem("notes-list"))
+  : [];
+console.log(listNotes);
 inputElement.addEventListener("change", (e) => {
   title = e.target.value;
 });
@@ -25,6 +30,7 @@ btnAdd.onclick = () => {
       title,
     };
     listNotes.push(newNote);
+    localStorage.setItem("notes-list", JSON.stringify(listNotes));
     renderListNotes();
   } else {
     alert("Enter your note");
@@ -33,6 +39,9 @@ btnAdd.onclick = () => {
 
 function renderListNotes() {
   let html = "";
+  listNotes = localStorage.getItem("notes-list")
+    ? JSON.parse(localStorage.getItem("notes-list"))
+    : [];
   listNotes.forEach((note) => {
     let newHTML = `
         <div class="card">
@@ -56,11 +65,13 @@ function renderListNotes() {
   });
 
   document.querySelector(".notes-list").innerHTML = html;
+  inputElement.value = "";
 }
 renderListNotes();
 
 function handleDelete(id) {
   listNotes = listNotes.filter((note) => note.id !== id);
+  localStorage.setItem("notes-list", JSON.stringify(listNotes));
   renderListNotes();
 }
 
@@ -84,4 +95,6 @@ function handleEdit(id) {
     renderListNotes();
     document.querySelector(".header__left__edit").classList.remove("active");
   };
+
+  localStorage.setItem("notes-list", JSON.stringify(listNotes));
 }
